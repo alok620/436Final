@@ -18,6 +18,8 @@ class TunerAudioManager {
         var prev = true
         var max = 0.0
         for (i in spec.normalizedSpectrogramData) {
+            //no frequencies higher than 400 currently supported so clamping for improved
+            //accuracy
             for (j in i.indices.filter {it > 0 && it < spec.fftSampleSize * 400 / wave.waveHeader.sampleRate }) {
                 if (i[j] > max) {
                     max = i[j]

@@ -12,7 +12,11 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 
-
+//media recorder no longer used but kept in for posterity
+//AudioRecord used instead
+//helpful resources I would never have been able to figure out writing the header without
+//https://stackoverflow.com/questions/5245497/how-to-record-wav-format-file-in-android
+//https://stackoverflow.com/questions/9179536/writing-pcm-recorded-data-into-a-wav-file-java-android
 class TunerAudioRecorder(
     private val context: Context,
     private val file: File
@@ -43,7 +47,6 @@ class TunerAudioRecorder(
     }
 
     private fun writeAudioDataToFile() {
-        //val filePath = File(context.cacheDir, "in.pcm")
         val data = arrayListOf<Byte>()
         val bData = ByteArray(BUFFER_SIZE/2)
 
@@ -63,7 +66,6 @@ class TunerAudioRecorder(
         while (isRecording) {
             // gets the voice output from microphone to byte format
             rec?.read(bData, 0, BUFFER_SIZE/2)
-            //Log.d("WRITING","Short writing to file$bData")
             try {
                 for(byte in bData) {
                     data.add(byte)
